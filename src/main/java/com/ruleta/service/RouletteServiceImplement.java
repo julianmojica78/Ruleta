@@ -52,9 +52,9 @@ public class RouletteServiceImplement implements IRouletteService {
 		return roulette.getIdRoulette();
 	}
 
-	public String rouletteBet(int idRoulette, int idUser, int idNumber, int money) {
+	public String rouletteBet(int idRoulette, int idUser, int number, int money) {
 		for (Roulette roulette : list) {
-			if (idUser == 0 && idNumber == 0 || idNumber >= 36 ) {
+			if (idUser == 0 && number == 0 || number >= 36 ) {
 				throw new com.ruleta.exception.NotFoundModelException("Id usuario o Numero de apuesta incorrecto");
 			}
 			if (idRoulette == 0) {
@@ -70,7 +70,7 @@ public class RouletteServiceImplement implements IRouletteService {
 				Bet bet = new Bet();
 				bet.setIdRoulette(idRoulette);
 				bet.setIdUser(idUser);
-				bet.setIdNumber(idNumber);
+				bet.setIdNumber(number);
 				bet.setMoney(money);
 				listBet.add(bet);
 

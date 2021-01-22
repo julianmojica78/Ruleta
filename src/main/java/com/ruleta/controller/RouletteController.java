@@ -49,10 +49,10 @@ public class RouletteController {
 	public ResponseEntity<String> rouletteBet(
 			@RequestParam(value="idRoulette")int idRoulette,
 			@RequestParam(value="idUser")int idUser,
-			@RequestParam(value="idNumber")int idNumber,
+			@RequestParam(value="Number")int number,
 			@RequestParam(value="money")int money
 			) {
-		String message = service.rouletteBet(idRoulette, idUser, idNumber, money);
+		String message = service.rouletteBet(idRoulette, idUser, number, money);
 		return new ResponseEntity<String>(message, HttpStatus.CREATED);
 	}
 	
