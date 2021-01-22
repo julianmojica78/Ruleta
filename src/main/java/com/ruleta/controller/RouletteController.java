@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ruleta.interfaces.IRouletteService;
+import com.ruleta.model.Bet;
 import com.ruleta.model.Roulette;
 import com.ruleta.service.RouletteServiceImplement;
 
@@ -38,14 +40,25 @@ public class RouletteController {
 	}
 	
 	@PostMapping("/saveRoulette")
-	public ResponseEntity<Integer> guardar(@RequestBody Roulette obj) {
+	public ResponseEntity<Integer> saveRoulette(@RequestBody Roulette obj) {
 		Integer idRoulette= service.save(obj);
 		return new ResponseEntity<Integer>(idRoulette, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("/deleteRoulette/{idRoulette}")
-	public ResponseEntity<Object> eliminar(@PathVariable int idRoulette) {
-		service.delete(idRoulette);
-		return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
+	@GetMapping("/rouletteBet")
+	public ResponseEntity<String> rouletteBet(
+			@RequestParam(value="idRoulette")int idRoulette,
+			@RequestParam(value="idUser")int idUser,
+			@RequestParam(value="idNumber")int idNumber,
+			@RequestParam(value="money")int money
+			) {
+		String message = service.rouletteBet(idRoulette, idUser, idNumber, money);
+		return new ResponseEntity<String>(message, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/closeRoulette/{idRoulette}")
+	public ResponseEntity<List<Bet>> closeRoulette(@PathVariable int idRoulette) {
+		List<Bet> list = service.closeRoulette(idRoulette);
+		return new ResponseEntity<List<Bet>>(list, HttpStatus.OK);
 	}
 }

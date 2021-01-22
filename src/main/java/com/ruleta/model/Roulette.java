@@ -7,7 +7,7 @@ public class Roulette {
 	private Integer idRoulette;
 	private LocalDateTime creationDate;
 	private LocalDateTime closingDate;
-	private Boolean state;
+	private String state;
 	
 	public Integer getIdRoulette() {
 		return idRoulette;
@@ -27,10 +27,10 @@ public class Roulette {
 	public void setClosingDate(LocalDateTime closingDate) {
 		this.closingDate = closingDate;
 	}
-	public Boolean getState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(Boolean state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 }
